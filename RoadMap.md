@@ -49,6 +49,7 @@ Store(AuthedUser, Questions, Users)
 		-
 	Question:Props(qid)
 		saveQuestionAnswer({authedUser, qid, answer})
+		**answer = 'optionOne' or 'optionTwo'
 	NewQuestion:
 		saveQuestion(question)
 	Login:
