@@ -1,14 +1,29 @@
-import React from 'react';
+import React, { Component } from 'react';
 import '../App.css';
+import './Dashboard'
+import Dashboard from './Dashboard';
+import  { connect } from 'react-redux'
+import { handleInitialData } from '../actions/shared'
 
-function App() {
+class App extends Component {
+  componentDidMount () {
+    this.props.dispatch(handleInitialData())
+  }
+  render() {
   return (
     <div className="App">
       <header className="App-header">
-        Would You Rather
+        <Dashboard />
       </header>
     </div>
   );
+  }
 }
 
-export default App;
+function mapStateToProps ({ authedUser }) {
+  return {
+    loading: authedUser === null
+  }
+}
+
+export default connect(mapStateToProps)(App)
