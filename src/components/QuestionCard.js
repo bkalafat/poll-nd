@@ -3,14 +3,16 @@ import { connect } from 'react-redux'
 
 class QuestionCard extends Component {
 
-
-
   render () {
     const { user, question } = this.props;
+
+    var time = question.timestamp
+    var date = new Date(time).toDateString()
 
     return (<div>
       <p>{user.name}</p>
       <p>{question.optionOne.text}</p>
+      <p>{date}</p>
     </div>)
   }
 }
