@@ -9,7 +9,7 @@
 		View Pull button(Opens Question view)
 
 # Question Component Specs:
-	is located at the question's route (/questionId)
+	is located at the question's route (question/questionId)
 	the author's name, avatar
 	all choices
 	Authed user
