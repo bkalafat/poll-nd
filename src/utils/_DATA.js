@@ -2,7 +2,7 @@ let users = {
   kupton: {
     id: 'kupton',
     name: 'Kate Upton',
-    avatarURL: "https://commons.wikimedia.org/wiki/File:Kate_Upton_(Harley_cropped).png",
+    avatarURL: "https://upload.wikimedia.org/wikipedia/commons/d/d8/Kate_Upton_%28Harley_cropped%29.png",
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
       "6ni6ok3ym7mf1p33lnez": 'optionTwo',
@@ -24,7 +24,7 @@ let users = {
   tarkan: {
     id: 'tarkan',
     name: 'Tarkan Tevetoğlu',
-    avatarURL: "https://commons.wikimedia.org/wiki/File:Tarkan_cropped.jpg",
+    avatarURL: "https://upload.wikimedia.org/wikipedia/commons/0/04/Tarkan_cropped.jpg",
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',

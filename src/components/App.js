@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import '../App.css';
 import './Dashboard'
+import '../App.css';
 import Dashboard from './Dashboard';
 import  { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
@@ -11,8 +11,8 @@ class App extends Component {
   }
   render() {
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="container" >
+      <header >
         <Dashboard />
       </header>
     </div>

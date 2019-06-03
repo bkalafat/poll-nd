@@ -6,13 +6,11 @@ class QuestionCard extends Component {
   render () {
     const { user, question } = this.props;
 
-    var time = question.timestamp
-    var date = new Date(time).toDateString()
-
-    return (<div>
-      <p>{user.name}</p>
-      <p>{question.optionOne.text}</p>
-      <p>{date}</p>
+    return (
+    <div className="jumbotron" >
+      <h5><img className="img-thumbnail col-8 col-sm-8 col-md-6 col-lg-4" src={user.avatarURL} alt={`Avatar of ${user.name}`}/> {user.name}</h5>
+      <p >{question.optionOne.text}</p>
+      <a href={`/question/${question.id}`} className="btn btn-primary btn-sm" role="button">View Poll</a>
     </div>)
   }
 }
