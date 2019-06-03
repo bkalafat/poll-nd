@@ -26,7 +26,6 @@ class Dashboard extends Component {
   }
 
   render () {
-
     return (
       <div className='text-center offset-3 col-6'>
         <div class="btn-group" role="group" >
