@@ -1,22 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
-import { saveQuestionAnswer } from '../utils/api';
+import { handleAddQuestionAnswer } from '../actions/questions';
 
 class Question extends Component {
 
   onOptionClicked = (e) => {
     e.preventDefault();
-    const { authedUser, question } = this.props
-    const id = question.id
-    const answer = e.target.value
-    saveQuestionAnswer({authedUser,id, answer})
+    const { dispatch, authedUser, question } = this.props
+    const qid = question.id
+    const answer = e.target.value === "optionTwo" ? "optionTwo" : "optionOne"
+    dispatch(handleAddQuestionAnswer({authedUser, qid, answer}))
   }
 
-  onOptionTwoClicked = (e) => {
-    e.preventDefault();
-    //TODO bkalafat: Add question optionTwo votes array authedUser.
-  }
 
   render() {
     const { question, author } = this.props
@@ -35,7 +31,7 @@ class Question extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, questions, users }, props) {
+function mapStateToProps({authedUser, questions, users }, props) {
   const { id } = props.match.params
   const question = questions[id]
   if (question) {
@@ -45,6 +41,10 @@ function mapStateToProps({ authedUser, questions, users }, props) {
       question,
       author
     }
+  }
+  else return {
+    question,
+    author: null
   }
 }
 

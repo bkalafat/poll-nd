@@ -14,6 +14,12 @@ export default function questions(state = {}, action) {
         ...state,
         [action.question.id] : action.question
       }
+    case ADD_QUESTION_ANSWER:
+      return {
+        ...state,
+        ...action.questions,
+        ...action.users
+      }
     default:
       return state
   }

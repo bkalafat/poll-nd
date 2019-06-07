@@ -2,31 +2,35 @@ import React, { Component, Fragment } from 'react';
 import './Dashboard'
 import '../App.css';
 import Dashboard from './Dashboard';
-import  { connect } from 'react-redux'
+import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
-import { BrowserRouter as Router, Route} from 'react-router-dom'
-import Question from './Question';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import Question from './Question'
+import Nav from './Nav'
+import LoadingBar from 'react-redux-loading'
 
 
 class App extends Component {
-  componentDidMount () {
+  componentDidMount() {
     this.props.dispatch(handleInitialData())
   }
   render() {
-  return (
-    <Router>
+    return (
+      <Router>
         <Fragment>
-          <div className="container" >
-          <Route path='/' exact component={Dashboard}/>
-          <Route path='/question/:id' component={Question}/>
-        </div>
+          <LoadingBar />
+          <div className='container'>
+            <Nav />
+            <Route path='/' exact component={Dashboard} />
+            <Route path='/question/:id' component={Question} />
+          </div>
         </Fragment>
       </Router>
-  );
+    );
   }
 }
 
-function mapStateToProps ({ authedUser }) {
+function mapStateToProps({ authedUser }) {
   return {
     loading: authedUser === null
   }

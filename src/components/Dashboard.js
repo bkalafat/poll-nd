@@ -28,9 +28,9 @@ class Dashboard extends Component {
   render () {
     return (
       <div className='text-center offset-3 col-6'>
-        <div class="btn-group" role="group" >
-        <button type="button" onClick={this.handleUnanswered.bind(this)} class="btn btn-secondary">Unanswered Questions</button>
-        <button type="button" onClick={this.handleAnswered.bind(this)} class="btn btn-secondary">Answered Questions</button>
+        <div className="btn-group" role="group" >
+        <button type="button" onClick={this.handleUnanswered.bind(this)} className="btn btn-secondary">Unanswered Questions</button>
+        <button type="button" onClick={this.handleAnswered.bind(this)} className="btn btn-secondary">Answered Questions</button>
       </div>
         <ul >
           {this.state.questionIds.map((id) => (

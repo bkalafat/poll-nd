@@ -38,16 +38,16 @@ export function handleAddQuestionAnswer (qid, answer) {
       qid,
       answer
     })
+    .then((questions,users) => dispatch(addQuestionAnswer(questions, users)))
     .then(() => dispatch(hideLoading()))
   }
 }
 
-function addQuestionAnswer(authedUser,qid,answer) {
+function addQuestionAnswer(questions,users) {
   return {
     type: ADD_QUESTION_ANSWER,
-    authedUser,
-    qid,
-    answer
+    questions,
+    users
   }
 }
 
