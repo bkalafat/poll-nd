@@ -2,22 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
 li{
   margin: 10px 0;
@@ -29,6 +13,20 @@ ul {
 
 .App-link {
   color: #61dafb;
+}
+
+.container {
+  /* This is the magic bit for Firefox */
+  scrollbar-width: none;
+}
+
+.container::-webkit-scrollbar {
+  /* This is the magic bit for WebKit */
+  display: none;
+}
+
+.selected {
+  border: 1px solid #0000ff;
 }
 
 

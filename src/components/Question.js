@@ -23,35 +23,51 @@ class Question extends Component {
 
 
   render() {
-    const { question, author } = this.props
+    const { authedUser, question, author } = this.props
 
     if (!question) {
       return <p>Loading</p>
     }
 
+    const isOptionOneSelected = question.optionOne.votes.includes(authedUser);
+    const isOptionTwoSelected = question.optionTwo.votes.includes(authedUser);
+    const disabled = isOptionOneSelected || isOptionTwoSelected;
+
+    const optionOneVotesLength = question.optionOne.votes.length
+    const optionTwoVotesLength = question.optionTwo.votes.length;
+    const totalVotesLength = optionOneVotesLength + optionTwoVotesLength
+
+    const optionOneText = disabled ? '%' + (optionOneVotesLength /  totalVotesLength) * 100 + ' (' + optionOneVotesLength + ' out of ' + totalVotesLength + ' votes)' : question.optionOne.text
+    const optionTwoText = disabled ? '%' + (optionTwoVotesLength /  totalVotesLength) * 100 + ' (' + optionTwoVotesLength + ' out of ' + totalVotesLength + ' votes)' : question.optionTwo.text
+
+    const buttonOneType = !disabled ? 'btn-outline-primary' : isOptionOneSelected ? 'btn-outline-success' : 'btn-outline-secondary'
+    const buttonTwoType = !disabled ? 'btn-outline-primary' : isOptionTwoSelected ? 'btn-outline-success' : 'btn-outline-secondary'
+
     return (
       <div id="center">
         <h5>{author.name} asked:</h5>
-        <button type="button" onClick={this.onOptionOneClicked} className="btn btn-outline-primary btn-lg btn-block">{question.optionOne.text}</button>
-        <button type="button" onClick={this.onOptionTwoClicked} className="btn btn-outline-primary btn-lg btn-block">{question.optionTwo.text}</button>
+        <button disabled={disabled} type="button" onClick={this.onOptionOneClicked} className={'btn  btn-lg btn-block ' + buttonOneType}>{optionOneText}</button>
+        <button disabled={disabled} type="button" onClick={this.onOptionTwoClicked} className={'btn  btn-lg btn-block ' + buttonTwoType}>{optionTwoText}</button>
       </div>
     )
   }
 }
 
-function mapStateToProps({questions, users }, props) {
+function mapStateToProps({authedUser, questions, users }, props) {
   const { id } = props.match.params
   const question = questions[id]
   if (question) {
     const author = users[question.author]
     return {
       question,
-      author
+      author,
+      authedUser
     }
   }
   else return {
     question,
-    author: null
+    author: null,
+    authedUser
   }
 }
 
