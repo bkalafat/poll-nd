@@ -24,3 +24,27 @@ code {
   margin-left: -200px;
 }
 
+
+.nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  text-decoration: none;
+}
+
+.nav li:first-child {
+  padding-left: 0;
+}
+
+li {
+  list-style-type: none;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.question-length {
+  text-align: right;
+  margin-top: 10px;
+  font-size: 20px;
+  color: #C3392A;
+}

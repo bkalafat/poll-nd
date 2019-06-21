@@ -11,10 +11,10 @@ export function handleInitialData() {
     dispatch(showLoading())
     return getInitialData()
       .then(({ users, questions }) => {
-        dispatch(hideLoading())
         dispatch(receiveUsers(users))
         dispatch(receiveQuestions(questions))
         dispatch(setAuthedUser(AUTHED_ID))
+        dispatch(hideLoading())
       })
   }
 }

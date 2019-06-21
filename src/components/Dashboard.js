@@ -12,12 +12,18 @@ class Dashboard extends Component {
     };
   }
 
+  componentDidMount() {
+    //TODO: bkalafat set state after got initial data.
+    this.setState({
+      questionIds: this.props.unansweredIds
+    })
+  }
+
   handleAnswered = () => {
     this.setState({
       questionIds: this.props.answeredIds
     })
   }
-
 
   handleUnanswered = () => {
     this.setState({
@@ -44,13 +50,11 @@ class Dashboard extends Component {
   }
 }
 
-
 function mapStateToProps({ authedUser, questions }) {
   return {
     unansweredIds: Object.keys(questions)
       .filter(x => !questions[x].optionOne.votes.includes(authedUser) && !questions[x].optionTwo.votes.includes(authedUser))
       .sort((a, b) => questions[b].timestamp - questions[a].timestamp),
-
     answeredIds: Object.keys(questions)
       .filter(x => questions[x].optionOne.votes.includes(authedUser) || questions[x].optionTwo.votes.includes(authedUser))
       .sort((a, b) => questions[b].timestamp - questions[a].timestamp)

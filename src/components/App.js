@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Question from './Question'
 import Nav from './Nav'
 import LoadingBar from 'react-redux-loading'
+import NewQuestion from './NewQuestion'
 
 
 class App extends Component {
@@ -21,8 +22,14 @@ class App extends Component {
           <LoadingBar />
           <div className='container'>
             <Nav />
-            <Route path='/' exact component={Dashboard} />
-            <Route path='/question/:id' component={Question} />
+            {this.props.loading === true
+              ? null
+              :
+              <div>
+                <Route path='/' exact component={Dashboard} />
+                <Route path='/question/:id' component={Question} />
+                <Route path='/new' component={NewQuestion} />
+              </div>}
           </div>
         </Fragment>
       </Router>
@@ -30,7 +37,7 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({ authedUser }) {
+function mapStateToProps({ authedUser, questions }) {
   return {
     loading: authedUser === null
   }
