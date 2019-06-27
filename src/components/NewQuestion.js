@@ -53,16 +53,16 @@ class NewQuestion extends Component {
       return <Redirect to='/'/>
     }
 
-    const optionOneLeft = 280 - optionOneText.length
-    const optionTwoLeft = 280 - optionTwoText.length
+    const optionOneLeft = 100 - optionOneText.length
+    const optionTwoLeft = 100 - optionTwoText.length
 
     if(!user)
-    return ('Loading')
+    return <Redirect to='/login/logout'/>
     else
     return (
 
       <div className="jumbotron" >
-        <h5><img className="img-thumbnail col-8 col-sm-8 col-md-6 col-lg-4" src={user.avatarURL} alt={`Avatar of ${user.name}`} /> {user.name} asks:</h5>
+        <h5>Ask new question:</h5>
         <h5>Would you rather</h5>
         <form onSubmit={this.handleSubmit} >
           <textarea
@@ -70,9 +70,9 @@ class NewQuestion extends Component {
             value={optionOneText}
             onChange={this.handleOneChange}
             className='textarea'
-            maxLength={280}
+            maxLength={100}
           />
-          {optionOneLeft < 100 && (
+          {optionOneLeft < 20 && (
             <div className='question-length'>
               {optionOneLeft}
             </div>
@@ -82,15 +82,15 @@ class NewQuestion extends Component {
             value={optionTwoText}
             onChange={this.handleTwoChange}
             className='textarea'
-            maxLength={280}
+            maxLength={100}
           />
-          {optionTwoLeft < 100 && (
+          {optionTwoLeft < 20 && (
             <div className='question-length'>
               {optionTwoLeft}
             </div>
           ) }
           <button
-            className='btn'
+            className='btn btn-success'
             type='submit'
             disabled={optionOneText === '' || optionTwoText === '' }>
               Submit

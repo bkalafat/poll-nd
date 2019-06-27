@@ -9,6 +9,7 @@ import Question from './Question'
 import Nav from './Nav'
 import LoadingBar from 'react-redux-loading'
 import NewQuestion from './NewQuestion'
+import Login from './Login'
 
 
 class App extends Component {
@@ -16,19 +17,21 @@ class App extends Component {
     this.props.dispatch(handleInitialData())
   }
   render() {
+    const {authedUser} = this.props
     return (
       <Router>
         <Fragment>
           <LoadingBar />
           <div className='container'>
-            <Nav />
+            <Nav IsAuthed={authedUser !== null} />
             {this.props.loading === true
               ? null
               :
-              <div>
+              <div className='text-center'>
                 <Route path='/' exact component={Dashboard} />
                 <Route path='/question/:id' component={Question} />
                 <Route path='/new' component={NewQuestion} />
+                <Route path='/login' component={Login} />
               </div>}
           </div>
         </Fragment>
@@ -37,9 +40,10 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, questions }) {
+function mapStateToProps({ questions, authedUser }) {
   return {
-    loading: authedUser === null
+    loading: questions === null,
+    authedUser
   }
 }
 

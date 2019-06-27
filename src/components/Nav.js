@@ -1,10 +1,10 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-export default function Nav () {
+export default function Nav(props) {
   return (
-    <nav className='nav'>
-      <ul>
+    <nav className='nav navbar navbar-inverse'>
+      <ul className="nav navbar-nav">
         <li>
           <NavLink to='/' exact activeClassName='active'>
             Home
@@ -15,6 +15,9 @@ export default function Nav () {
             New Question
           </NavLink>
         </li>
+      </ul>
+      <ul className="nav navbar-nav navbar-right">
+        <li><NavLink to={`/login/${props.IsAuthed ? 'logout' : 'login' }`} activeClassName='active'>{props.IsAuthed ? `Log Out` : `Login`}</NavLink></li>
       </ul>
     </nav>
   )
