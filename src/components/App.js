@@ -31,7 +31,7 @@ class App extends Component {
               <div className='text-center' >
                 <Route path='/' exact component={Dashboard} />
                 <Route path='/question/:id' component={Question} />
-                <Route path='/new' component={NewQuestion} />
+                <Route path='/add' component={NewQuestion} />
                 <Route path='/login' component={Login} />
                 <Route path='/leaderboard' component={LeaderBoard} />
               </div>}

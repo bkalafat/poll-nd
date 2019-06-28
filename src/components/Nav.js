@@ -11,7 +11,7 @@ export default function Nav(props) {
           </NavLink>
         </li>
         <li>
-          <NavLink to='/new' activeClassName='active'>
+          <NavLink to='/add' activeClassName='active'>
             New Question
           </NavLink>
         </li>
