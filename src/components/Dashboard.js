@@ -47,7 +47,7 @@ class Dashboard extends Component {
           <button type="button" onClick={this.handleUnanswered.bind(this)} className="btn btn-secondary">Unanswered Questions</button>
           <button type="button" onClick={this.handleAnswered.bind(this)} className="btn btn-secondary">Answered Questions</button>
         </div>
-        <ul >
+        <ul>
           {this.state.questionIds.map((id) => (
             <li key={id}>
               <QuestionCard id={id} />

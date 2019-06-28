@@ -49,6 +49,7 @@ class Login extends Component {
     ];
 
     return (
+      <div className="offset-3 col-6">
         <form onSubmit={this.handleSubmit} >
           <Select
             onChange={this.handleChange}
@@ -58,6 +59,7 @@ class Login extends Component {
             Login
           </button>
         </form>
+      </div>
     )
   }
 }

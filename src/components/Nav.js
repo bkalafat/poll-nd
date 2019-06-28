@@ -15,6 +15,11 @@ export default function Nav(props) {
             New Question
           </NavLink>
         </li>
+        <li>
+          <NavLink to='/leaderboard' activeClassName='active'>
+            Leader Board
+          </NavLink>
+        </li>
       </ul>
       <ul className="nav navbar-nav navbar-right">
         <li><NavLink to={`/login/${props.IsAuthed ? 'logout' : 'login' }`} activeClassName='active'>{props.IsAuthed ? `Log Out` : `Login`}</NavLink></li>

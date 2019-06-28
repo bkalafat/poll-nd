@@ -10,6 +10,7 @@ import Nav from './Nav'
 import LoadingBar from 'react-redux-loading'
 import NewQuestion from './NewQuestion'
 import Login from './Login'
+import LeaderBoard from './LeaderBoard';
 
 
 class App extends Component {
@@ -27,11 +28,12 @@ class App extends Component {
             {this.props.loading === true
               ? null
               :
-              <div className='text-center'>
+              <div className='text-center' >
                 <Route path='/' exact component={Dashboard} />
                 <Route path='/question/:id' component={Question} />
                 <Route path='/new' component={NewQuestion} />
                 <Route path='/login' component={Login} />
+                <Route path='/leaderboard' component={LeaderBoard} />
               </div>}
           </div>
         </Fragment>

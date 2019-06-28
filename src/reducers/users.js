@@ -1,6 +1,7 @@
 import {
   RECEIVE_USERS,
-  ADD_USER_ANSWER
+  ADD_USER_ANSWER,
+  ADD_USER_QUESTION
 } from '../actions/users'
 
 export default function users(state = {}, action) {
@@ -21,7 +22,15 @@ export default function users(state = {}, action) {
             }
           }
         }
-        default:
-          return state
+        case ADD_USER_QUESTION:
+          return {
+            ...state,
+            [action.authedUser]: {
+              ...state[action.authedUser],
+              questions: state[action.authedUser].questions.concat([action.qid])
+            }
+          }
+          default:
+            return state
   }
 }
