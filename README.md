@@ -1,6 +1,12 @@
 # Would You Rather Project
 
-The `_DATA.js` file represents a fake database and methods that let you access the data. The only thing you need to edit in the ` _DATA.js` file is the value of `avatarURL`. Each user should have an avatar, so you’ll need to add the path to each user’s avatar.
+In this application, the main page displays a list of unanswered or answered questions, each of which has two options. The options has singe selection control that lets you select the answer only once. When you select answer statistical answer rate shown.
+
+The new question page has two text input that should be used to vreate question. When question is submitted it will be displayed on the home page.
+
+Login screen has multi select component for choose the user which you want to log in.
+
+The Dashboard page showing the points of users' ordered. Points calculated by accumulating asked and answered questions
 
 ## Data
 
@@ -90,3 +96,10 @@ Your code will talk to the database via 4 methods:
 | authedUser | String | The id of the user who answered the question|
 | qid | String | The id of the question that was answered|
 | answer | String | The option the user selected. The value should be either `"optionOne"` or `"optionTwo"`|
+
+## Project Setup
+
+* clone the Project - `https://github.com/bkalafat/poll-nd.git`
+* install the dependencies - `npm install`
+* start the development server with `npm start`
+
