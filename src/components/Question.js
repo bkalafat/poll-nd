@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import { handleAddQuestionAnswer } from '../actions/questions';
+import {Redirect} from 'react-router-dom'
 
 class Question extends Component {
 
@@ -21,9 +22,22 @@ class Question extends Component {
     dispatch(handleAddQuestionAnswer(qid, answer))
   }
 
+  isAuthed = () => {
+    const { authedUser } = this.props;
+
+    if (typeof authedUser !== 'string' || !authedUser instanceof String || authedUser === null || authedUser === '' || authedUser.length === 0) {
+      return false
+    }
+    return true
+  }
+
 
   render() {
+
     const { authedUser, question, author } = this.props
+
+    if(!this.isAuthed())
+    return <Redirect to='/login/logout'/>
 
     if (!question) {
       return <p>Loading</p>
@@ -37,15 +51,15 @@ class Question extends Component {
     const optionTwoVotesLength = question.optionTwo.votes.length;
     const totalVotesLength = optionOneVotesLength + optionTwoVotesLength
 
-    const optionOneText = disabled ? '%' + (optionOneVotesLength /  totalVotesLength) * 100 + ' (' + optionOneVotesLength + ' out of ' + totalVotesLength + ' votes)' : question.optionOne.text
-    const optionTwoText = disabled ? '%' + (optionTwoVotesLength /  totalVotesLength) * 100 + ' (' + optionTwoVotesLength + ' out of ' + totalVotesLength + ' votes)' : question.optionTwo.text
+    const optionOneText = disabled ? question.optionOne.text +  ' %' + (optionOneVotesLength /  totalVotesLength) * 100 + ' (' + optionOneVotesLength + ' out of ' + totalVotesLength + ' votes)' : question.optionOne.text
+    const optionTwoText = disabled ? question.optionTwo.text +  ' %' + (optionTwoVotesLength /  totalVotesLength) * 100 + ' (' + optionTwoVotesLength + ' out of ' + totalVotesLength + ' votes)' : question.optionTwo.text
 
     const buttonOneType = !disabled ? 'btn-outline-primary' : isOptionOneSelected ? 'btn-outline-success' : 'btn-outline-secondary'
     const buttonTwoType = !disabled ? 'btn-outline-primary' : isOptionTwoSelected ? 'btn-outline-success' : 'btn-outline-secondary'
 
     return (
       <div id="center">
-        <h5>{author.name} asked:</h5>
+        <h5>{author.name} asked: Would You Rather</h5>
         <button disabled={disabled} type="button" onClick={this.onOptionOneClicked} className={'btn  btn-lg btn-block ' + buttonOneType}>{optionOneText}</button>
         <button disabled={disabled} type="button" onClick={this.onOptionTwoClicked} className={'btn  btn-lg btn-block ' + buttonTwoType}>{optionTwoText}</button>
       </div>
