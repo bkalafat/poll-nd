@@ -1,9 +1,23 @@
 import React, { Component } from 'react'
 import ScoreBoard from './ScoreBoard';
 import { connect } from 'react-redux'
+import {Redirect} from 'react-router-dom'
 
 class LeaderBoard extends Component {
+
+  isAuthed = () => {
+    const { authedUser } = this.props;
+
+    if (typeof authedUser !== 'string' || !authedUser instanceof String || authedUser === null || authedUser === '' || authedUser.length === 0) {
+      return false
+    }
+    return true
+  }
+
   render() {
+
+    if(!this.isAuthed())
+    return <Redirect to='/login/logout'/>
 
     if (!this.props.userArray) {
       return <div>Loading</div>
@@ -28,9 +42,10 @@ class LeaderBoard extends Component {
   }
 }
 
-function mapStateToProps({ users }) {
+function mapStateToProps({ authedUser, users }) {
   const userArray = Object.keys(users).map(i => users[i])
   return {
+    authedUser,
     userArray
   }
 }

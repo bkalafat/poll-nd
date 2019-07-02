@@ -26,7 +26,8 @@ class Login extends Component {
     const authedUser = e.value
 
     this.setState(() => ({
-      authedUser
+      authedUser,
+      toHome: false
     }))
   }
 
@@ -35,7 +36,7 @@ class Login extends Component {
 
     const pathname = this.props.location.pathname
     if (pathname === '/login/logout' && !this.state.toHome) {
-      dispatch(setAuthedUser(null))
+      dispatch(setAuthedUser(''))
     }
     else {
       return <Redirect to='/' />

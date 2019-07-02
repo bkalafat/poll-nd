@@ -15,34 +15,41 @@ class Dashboard extends Component {
 
   componentDidMount() {
     //TODO: bkalafat set state after got initial data.
+    this.isAuthed()
     this.setState({
       questionIds: this.props.unansweredIds
     })
   }
 
+  isAuthed = () => {
+    const { authedUser } = this.props;
+
+    if (typeof authedUser !== 'string' || !authedUser instanceof String || authedUser === null || authedUser === '' || authedUser.length === 0) {
+      return false
+    }
+    return true
+  }
+
   handleAnswered = () => {
+    this.isAuthed()
     this.setState({
       questionIds: this.props.answeredIds
     })
   }
 
   handleUnanswered = () => {
+    this.isAuthed()
     this.setState({
       questionIds: this.props.unansweredIds
     })
   }
 
   render() {
-
-    const {authedUser} = this.props;
-
-    if(!authedUser)
-    {
+    if(!this.isAuthed()) {
       return <Redirect to='/login/logout' />
     }
-
     return (
-      <div  className="offset-3 col-6">
+      <div className="offset-3 col-6">
         <div className="btn-group" role="group" >
           <button type="button" onClick={this.handleUnanswered.bind(this)} className="btn btn-secondary">Unanswered Questions</button>
           <button type="button" onClick={this.handleAnswered.bind(this)} className="btn btn-secondary">Answered Questions</button>
@@ -67,7 +74,7 @@ function mapStateToProps({ authedUser, questions }) {
     answeredIds: Object.keys(questions)
       .filter(x => questions[x].optionOne.votes.includes(authedUser) || questions[x].optionTwo.votes.includes(authedUser))
       .sort((a, b) => questions[b].timestamp - questions[a].timestamp),
-      authedUser
+    authedUser
   }
 }
 
