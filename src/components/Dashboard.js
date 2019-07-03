@@ -46,7 +46,10 @@ class Dashboard extends Component {
 
   render() {
     if(!this.isAuthed()) {
-      return <Redirect to='/login/logout' />
+      return <Redirect to={{
+        pathname: '/login/logout',
+        state: { from: this.props.location }
+      }}/>
     }
     return (
       <div className="offset-3 col-6">

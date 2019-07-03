@@ -34,12 +34,14 @@ class Login extends Component {
   render() {
     const { dispatch } = this.props
 
+    const { from } = this.props.location.state || { from: { pathname: '/' } }
+
     const pathname = this.props.location.pathname
     if (pathname === '/login/logout' && !this.state.toHome) {
       dispatch(setAuthedUser(''))
     }
     else {
-      return <Redirect to='/' />
+      return <Redirect to={ from } />
     }
 
     //TODO bkalafat: Get user ids from api.

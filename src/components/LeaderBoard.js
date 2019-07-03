@@ -17,7 +17,10 @@ class LeaderBoard extends Component {
   render() {
 
     if(!this.isAuthed())
-    return <Redirect to='/login/logout'/>
+    return <Redirect to={{
+      pathname: '/login/logout',
+      state: { from: this.props.location }
+    }}/>
 
     if (!this.props.userArray) {
       return <div>Loading</div>

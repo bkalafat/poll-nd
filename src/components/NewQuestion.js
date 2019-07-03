@@ -57,7 +57,10 @@ class NewQuestion extends Component {
     const optionTwoLeft = 100 - optionTwoText.length
 
     if(!user)
-    return <Redirect to='/login/logout'/>
+    return <Redirect to={{
+      pathname: '/login/logout',
+      state: { from: this.props.location }
+    }}/>
     else
     return (
 
