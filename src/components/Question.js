@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import { handleAddQuestionAnswer } from '../actions/questions';
-import {Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 class Question extends Component {
 
@@ -36,11 +36,15 @@ class Question extends Component {
 
     const { authedUser, question, author } = this.props
 
-    if(!this.isAuthed())
-    return <Redirect to='/login/logout'/>
+    if (!this.isAuthed()) {
+      return <Redirect to={{
+        pathname: '/login/logout',
+        state: { from: this.props.location }
+      }} />
+    }
 
     if (!question) {
-      return <p>Loading</p>
+      return <Redirect to='/notFound'/>
     }
 
     const isOptionOneSelected = question.optionOne.votes.includes(authedUser);
@@ -51,8 +55,8 @@ class Question extends Component {
     const optionTwoVotesLength = question.optionTwo.votes.length;
     const totalVotesLength = optionOneVotesLength + optionTwoVotesLength
 
-    const optionOneText = disabled ? question.optionOne.text +  ' %' + (optionOneVotesLength /  totalVotesLength) * 100 + ' (' + optionOneVotesLength + ' out of ' + totalVotesLength + ' votes)' : question.optionOne.text
-    const optionTwoText = disabled ? question.optionTwo.text +  ' %' + (optionTwoVotesLength /  totalVotesLength) * 100 + ' (' + optionTwoVotesLength + ' out of ' + totalVotesLength + ' votes)' : question.optionTwo.text
+    const optionOneText = disabled ? question.optionOne.text + ' %' + (optionOneVotesLength / totalVotesLength) * 100 + ' (' + optionOneVotesLength + ' out of ' + totalVotesLength + ' votes)' : question.optionOne.text
+    const optionTwoText = disabled ? question.optionTwo.text + ' %' + (optionTwoVotesLength / totalVotesLength) * 100 + ' (' + optionTwoVotesLength + ' out of ' + totalVotesLength + ' votes)' : question.optionTwo.text
 
     const buttonOneType = !disabled ? 'btn-outline-primary' : isOptionOneSelected ? 'btn-outline-success' : 'btn-outline-secondary'
     const buttonTwoType = !disabled ? 'btn-outline-primary' : isOptionTwoSelected ? 'btn-outline-success' : 'btn-outline-secondary'
@@ -67,7 +71,7 @@ class Question extends Component {
   }
 }
 
-function mapStateToProps({authedUser, questions, users }, props) {
+function mapStateToProps({ authedUser, questions, users }, props) {
   const { id } = props.match.params
   const question = questions[id]
   if (question) {
